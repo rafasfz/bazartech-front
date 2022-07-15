@@ -152,8 +152,8 @@
       <img
         src={productImage.image}
         alt={productImage.description}
-        width="287"
-        height="190"
+        width="280"
+        height="280"
         style="object-fit: cover;"
       />
       <button on:click|preventDefault={() => removeImage(index)}>x</button>
