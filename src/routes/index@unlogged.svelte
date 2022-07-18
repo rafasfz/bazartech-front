@@ -1,11 +1,11 @@
 <script>
-  import { goto } from '$app/navigation'
-  import * as cookie from 'cookie'
-  import loginImg from '/src/assets/login-image.svg'
+  import { goto } from '$app/navigation';
+  import * as cookie from 'cookie';
+  import loginImg from '/src/assets/login-image.svg';
 
-  let email = ''
-  let password = ''
-  let remeber_password = false
+  let email = '';
+  let password = '';
+  let remeber_password = false;
 </script>
 
 <div id="login-content">
@@ -120,6 +120,10 @@
     margin: 0 0 0.8rem 0;
   }
 
+  :global(a) {
+    text-decoration: none;
+  }
+
   :global(form input:not(input[type='checkbox'])) {
     display: block;
     width: 100%;
@@ -194,6 +198,21 @@
       grid-template-columns: 1fr;
     }
 
+    #login-content .form {
+      margin: 0;
+    }
+  }
+
+  @media (max-width: 2136px) and (min-width: 1520px) {
+    #login-content .form {
+      margin: 14rem 0;
+    }
+  }
+
+  @media (max-width: 1481px) {
+    #login-content .content .image {
+      width: 19rem;
+    }
     #login-content .form {
       margin: 0;
     }

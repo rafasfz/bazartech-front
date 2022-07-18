@@ -4,16 +4,61 @@
   import { page } from '$app/stores';
 </script>
 
+<div class="flex-wrapper">
+  <header>
+    <ul id="header-content">
+      <li class="title">
+        {#if $session.user}
+          <a href="/dashboard">
+            <img src={logo} alt="Logo do BazarTech" />
+          </a>
+        {:else}
+          <a href="/">
+            <img src={logo} alt="Logo do BazarTech" />
+          </a>
+        {/if}
+      </li>
+      <div class="right-menu">
+        <hr class="divider" width="1" size="30" />
+        {#if !$session.user && $page.url.pathname === '/'}
+          <li class="btn menu-button"><a href="/sign-up">Criar conta</a></li>
+        {/if}
+        {#if !$session.user && $page.url.pathname === '/sign-up'}
+          <li class="btn menu-button"><a href="/">Login</a></li>
+        {/if}
+        {#if $session.user}
+          <li class="btn menu-button"><a href="/dashboard">Produtos</a></li>
+        {/if}
+        {#if $session.user}
+          <li class="btn menu-button">
+            <a href="/products/register">Anuncie aqui</a>
+          </li>
+        {/if}
+        {#if $session.user}
+          <li class="btn menu-button"><a href="/auth/logout">Logout</a></li>
+        {/if}
+      </div>
+    </ul>
+  </header>
+
+  <div class="content">
+    <slot />
+  </div>
+
+  <footer>
+    © 2022 Todos os direitos reservados - Ana Carolina / Cácio Lucas / Rafael.
+  </footer>
+</div>
 
 <style>
-  :global(:root){
-    --primary-color: #0C1618;
+  :global(:root) {
+    --primary-color: #0c1618;
     --second-color: #004643;
-    --btn-color: #FAF4D3;
-    --btn-color-hover: #FAEEAA;
+    --btn-color: #faf4d3;
+    --btn-color-hover: #faeeaa;
   }
 
-  :global(html,body){
+  :global(html, body) {
     height: 100%;
     width: 100%;
     margin: 0;
@@ -22,13 +67,13 @@
     box-sizing: border-box;
     position: relative;
   }
-	:global(*) {
-		margin: 0;
+  :global(*) {
+    margin: 0;
     text-decoration: none;
     font-family: 'Inter', sans-serif;
     padding: 0;
     box-sizing: border-box;
-	}
+  }
 
   :global(.btn) {
     display: inline-block;
@@ -46,7 +91,8 @@
     line-height: 1.5;
     border-radius: 50px;
     padding: 10px;
-    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+    transition: color 0.15s ease-in-out, background-color 0.15s ease-in-out,
+      border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
     background: var(--btn-color);
   }
   .menu-button {
@@ -54,19 +100,19 @@
     background: var(--btn-color);
   }
 
-  .menu-button:hover{
+  .menu-button:hover {
     background: var(--btn-color-hover);
   }
 
   .menu-button a {
-    color: var(--primary-color)
+    color: var(--primary-color);
   }
 
   header {
     background: var(--primary-color);
   }
 
-  #header-content{
+  #header-content {
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -76,21 +122,21 @@
     list-style: none;
   }
 
-  .right-menu{
+  .right-menu {
     display: flex;
     justify-content: space-between;
     align-items: center;
   }
 
-  .title img{
+  .title img {
     width: 15rem;
   }
 
-  .divider{
-    margin: 0 .8rem;
+  .divider {
+    margin: 0 0.8rem;
   }
 
-  :global(footer){
+  :global(footer) {
     width: 100%;
     margin: auto 0;
     position: absolute;
@@ -100,32 +146,35 @@
     padding: 20px;
     font-size: 14px;
   }
-  
+
   .content {
     width: 90%;
     margin: 0 auto;
   }
 
   #anuncio {
-    color:white;
+    color: white;
   }
 
-  @media (min-width: 1500px){
-    :global(html,body){
-      background: linear-gradient(-23deg, #FFF 48%, var(--primary-color) 45%)!important;
+  @media (min-width: 1500px) {
+    :global(html, body) {
+      background: linear-gradient(
+        -23deg,
+        #fff 48%,
+        var(--primary-color) 45%
+      ) !important;
     }
 
     header {
       background: transparent;
     }
 
-    :global(footer){
+    :global(footer) {
       bottom: 0;
     }
   }
 
-
-  @media (max-width: 620px){
+  @media (max-width: 620px) {
     .title img {
       width: 10rem;
     }
@@ -135,52 +184,9 @@
     }
   }
 
-  @media (max-width: 370px){
+  @media (max-width: 370px) {
     .title img {
       width: 6rem;
     }
   }
-
-
-
 </style>
-
-
-<div class="flex-wrapper">
-  <header>
-    <ul id="header-content">
-      <li class="title">
-        <a href="/">
-          <img  src={logo} alt="Logo do BazarTech">
-        </a>
-      </li>
-      <div class="right-menu">
-        <li id="anuncio">Anúncios</li> 
-        <hr class="divider" width="1" size="30">
-      {#if !$session.user && $page.url.pathname === '/'}
-        <li class="btn menu-button"><a href="/sign-up">Criar conta</a></li>
-      {/if}
-      {#if !$session.user && $page.url.pathname === '/sign-up'}
-       <li class="btn menu-button"><a href="/">Login</a></li>
-      {/if}
-      {#if $session.user}
-        <li class="btn menu-button"><a href="/dashboard">Produtos</a></li>
-      {/if}
-      {#if $session.user}
-        <li class="btn menu-button"><a href="/products/register">Anuncie aqui</a></li>
-      {/if}
-      {#if $session.user}
-        <li class="btn menu-button"><a href="/auth/logout">Logout</a></li>
-      {/if}
-      </div>
-    </ul>
-  </header>
-  
-  <div class="content">
-    <slot />
-  </div>
-  
-  <footer>
-        © 2022 Todos os direitos reservados - Ana Carolina / Cácio Lucas / Rafael.
-  </footer>
-</div>
