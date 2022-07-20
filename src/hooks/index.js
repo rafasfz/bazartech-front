@@ -8,6 +8,7 @@ const isJwtExpired = (token) =>
 export const handle = async ({ event, resolve }) => {
   const cookies = cookie.parse(event.request.headers.get('cookie') || '')
 
+  event.locals.error = cookies.error || null
   event.locals.access = cookies.access || null
   event.locals.refresh = cookies.refresh || null
   event.locals.user = null
@@ -71,6 +72,7 @@ export const getSession = (event) => {
     access: event.locals.access,
     refresh: event.locals.refresh,
     user: event.locals.user,
+    error: event.locals.error,
   }
 }
 
