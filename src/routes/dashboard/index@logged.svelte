@@ -1,25 +1,25 @@
 <script>
-  import { session } from '$app/stores';
-  import { claim_svg_element } from 'svelte/internal';
+  import { session } from '$app/stores'
+  import { claim_svg_element } from 'svelte/internal'
   const formatDate = (date) => {
-    const today = new Date();
-    const d = new Date(date);
+    const today = new Date()
+    const d = new Date(date)
 
-    const created_at_days = today.getTime() - d.getTime();
-    const difference = Math.ceil(created_at_days / (1000 * 3600 * 24));
+    const created_at_days = today.getTime() - d.getTime()
+    const difference = Math.ceil(created_at_days / (1000 * 3600 * 24))
     if (difference == 0) {
-      return 'Criado hoje';
+      return 'Criado hoje'
     } else {
-      return `Criado à ${difference} dias atrás`;
+      return `Criado à ${difference} dias atrás`
     }
-  };
+  }
 
-  export let products = [];
+  export let products = []
 </script>
 
 <div class="products-list">
   <h2 class="mb-4 mt-2">Produtos</h2>
-  <div class="d-flex align-items-center justify-content- flex-wrap">
+  <div class="d-flex align-items-center flex-wrap justify-content-between">
     {#each products as product}
       <div
         class="card"
