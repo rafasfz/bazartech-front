@@ -19,7 +19,9 @@
 
 <div class="products-list">
   <h2 class="mb-4 mt-2">Produtos</h2>
-  <div class="d-flex align-items-center flex-wrap justify-content-between">
+  <div
+    class="d-flex align-items-center flex-wrap justify-content-between center-mobile"
+  >
     {#each products as product}
       <div
         class="card"
@@ -82,6 +84,12 @@
   @media (max-width: 350px) {
     img {
       width: auto !important;
+    }
+  }
+
+  @media (max-width: 741px) {
+    div.center-mobile {
+      justify-content: center !important;
     }
   }
 </style>
