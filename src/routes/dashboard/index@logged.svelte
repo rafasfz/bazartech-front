@@ -20,7 +20,7 @@
 <div class="products-list">
   <h2 class="mb-4 mt-2">Produtos</h2>
   <div
-    class="d-flex align-items-center flex-wrap justify-content-between center-mobile"
+    class="d-flex align-items-center flex-wrap justify-content-right center-mobile"
   >
     {#each products as product}
       <div

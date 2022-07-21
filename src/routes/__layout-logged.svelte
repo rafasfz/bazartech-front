@@ -1,7 +1,7 @@
 <script>
-  import logo from '/src/assets/bazartech.png';
-  import { session } from '$app/stores';
-  import { page } from '$app/stores';
+  import logo from '/src/assets/bazartech.png'
+  import { session } from '$app/stores'
+  import { page } from '$app/stores'
 </script>
 
 <div class="flex-wrapper">
@@ -161,7 +161,7 @@
   :global(footer) {
     width: 100%;
     margin: auto 0;
-    position: absolute;
+    position: relative;
     bottom: auto;
     color: var(--second-color);
     text-align: center;
